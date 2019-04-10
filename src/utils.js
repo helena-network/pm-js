@@ -322,9 +322,11 @@ export async function sendTransactionAndGetResult (opts) {
             return matchingLog.args[opts.eventArgName]
         } else {
             opts.log(`tx hash ${txHash.slice(0, 6)}..${txHash.slice(-4)} returned ${opts.resultContract.contractName}(${matchingLog.args[opts.eventArgName]})`)
+            console.log(opts);
             contractInstance = await opts.resultContract.at(matchingLog.args[opts.eventArgName])
             // Set the resulting transaction hash on the contract instance
             contractInstance.transactionHash = txHash
+            console.log("Instance" + contractInstance)
             return contractInstance
         }
     } catch(err) {

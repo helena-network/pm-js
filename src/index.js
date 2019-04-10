@@ -22,7 +22,7 @@ const windowLoaded = new Promise((accept, reject) => {
     }, false)
 })
 
-const gasStatsData = require('@gnosis.pm/pm-contracts/build/gas-stats.json')
+const gasStatsData = require('@frontier-token-research/pm-contracts/build/gas-stats.json')
 const gasLimit = 4e6
 const gasDefaultMaxMultiplier = 2
 
@@ -31,7 +31,6 @@ const implementationInterfaceMap = {
 }
 
 const contractArtifacts = [
-    'Math',
     'Event',
     'CategoricalEvent',
     'ScalarEvent',
@@ -47,7 +46,7 @@ const contractArtifacts = [
     'Market',
     'StandardMarket',
     'StandardMarketFactory',
-].map((name) => require(`@gnosis.pm/pm-contracts/build/contracts/${name}.json`))
+].map((name) => require(`@frontier-token-research/pm-contracts/build/contracts/${name}.json`))
 
 const instanceModules = [oracles, events, markets]
 
@@ -130,7 +129,7 @@ class Gnosis {
 
             return [name, c]
         }))
-
+        this.contracts.HumanFriendlyToken = this.contracts.DetailedERC20
         this.contracts.Token = this.contracts.ERC20
         this.contracts.EtherToken = this.contracts.WETH9
 
